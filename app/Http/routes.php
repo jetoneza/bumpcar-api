@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/test', 'TestController@test');
 
+// Event routes
+Route::resource('events', 'EventsController');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
