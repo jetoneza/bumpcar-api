@@ -5,15 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Event Model
+ * Place Model
  *
  * @package App
  * @author jet.oneza <jet.oneza@gmail.com>
  */
-class Event extends Model
+class Place extends Model
 {
-  public function place()
+  public function events()
   {
-    return $this->belongsTo('App\Place');
+    return $this->hasMany('App/Events');
   }
 }

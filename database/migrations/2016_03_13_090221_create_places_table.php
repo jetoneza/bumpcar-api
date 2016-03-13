@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventTable extends Migration
+class CreatePlacesTable extends Migration
 {
   /**
    * Run the migrations.
@@ -12,11 +12,11 @@ class CreateEventTable extends Migration
    */
   public function up()
   {
-    Schema::create('events', function (Blueprint $table) {
+    Schema::create('places', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('code');
-      $table->string('file_url');
-      $table->integer('place_id');
+      $table->string('name');
+      $table->string('latitude');
+      $table->string('longitude');
       $table->timestamps();
     });
   }
@@ -28,6 +28,6 @@ class CreateEventTable extends Migration
    */
   public function down()
   {
-    Schema::drop('events');
+    Schema::drop('places');
   }
 }
