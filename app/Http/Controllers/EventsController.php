@@ -17,7 +17,7 @@ class EventsController extends Controller
 {
   public function index()
   {
-    $events = Event::with('place')->get();
+    $events = Event::with('place')->with('violations')->get();
 
     return $events;
   }

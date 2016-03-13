@@ -16,4 +16,9 @@ class Event extends Model
   {
     return $this->belongsTo('App\Place');
   }
+
+  public function violations()
+  {
+    return $this->hasMany('App\Violation');
+  }
 }
