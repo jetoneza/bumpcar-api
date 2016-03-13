@@ -20,6 +20,9 @@ Route::get('/test', 'TestController@test');
 // Event routes
 Route::resource('events', 'EventsController');
 
+// Proccessing routes
+Route::get('/process', 'ProcessController@index');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -33,4 +36,10 @@ Route::resource('events', 'EventsController');
 
 Route::group(['middleware' => ['web']], function () {
   //
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
