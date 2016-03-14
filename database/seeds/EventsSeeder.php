@@ -15,20 +15,8 @@ class EventsSeeder extends Seeder
   {
     $event           = new Event();
     $event->code     = str_random(10);
-    $event->file_url = '/assets-src/files/videos/collision.avi';
-    $event->place_id = 1;
-    $event->save();
-
-    $event           = new Event();
-    $event->code     = str_random(10);
     $event->file_url = '/assets-src/files/videos/speed_detection.mp4';
     $event->place_id = 2;
-    $event->save();
-
-    $event           = new Event();
-    $event->code     = str_random(10);
-    $event->file_url = '/assets-src/files/videos/collision.avi';
-    $event->place_id = 3;
     $event->save();
 
     $event           = new Event();
