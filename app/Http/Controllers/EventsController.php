@@ -22,11 +22,9 @@ class EventsController extends Controller
   {
     $key = $request->get('key');
     if ($key === self::APP_KEY) {
-      $events = Event::with('place')->with('violations')->get();
+      $events = Event::with('place')->with('violations')->orderBy('created_at', 'DESC')->get();
 
-      $sorted = $events->sortBy('created_at');
-
-      return $sorted->values()->all();
+      return $events;
     } else {
       return ['error' => 'Your query is not authorized!'];
     }
