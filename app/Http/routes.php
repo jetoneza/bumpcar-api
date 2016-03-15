@@ -20,6 +20,10 @@ Route::get('/test', 'TestController@test');
 // Event routes
 Route::resource('events', 'EventsController');
 
+// Violation routes
+Route::get('/violations/count', 'ViolationsController@count');
+Route::resource('violations', 'ViolationsController');
+
 // Proccessing routes
 Route::get('/process', 'ProcessController@index');
 
@@ -39,7 +43,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+  Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+  Route::get('/home', 'HomeController@index');
 });
