@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Violation;
+use Carbon\Carbon;
 
 /**
  * Class ViolationsController
@@ -33,9 +34,21 @@ class ViolationsController extends Controller
   {
     $key = $request->get('key');
     if ($key === self::APP_KEY) {
-      $overSpeedingCount    = Violation::where('type', Violation::VIOLATION_SPEEDING)->count();
-      $wrongLaneCount       = Violation::where('type', Violation::VIOLATION_WRONG_LANE)->count();
-      $beatingRedLightCount = Violation::where('type', Violation::VIOLATION_RED_LIGHT)->count();
+
+      $startDate = $request->get('startDate');
+      $endDate   = $request->get('endDate');
+
+      if ($startDate and $endDate) {
+        $startDate = new Carbon($startDate);
+        $endDate   = new Carbon($endDate);
+      } else {
+        $startDate = Carbon::now();
+        $endDate   = Carbon::now()->addWeek();
+      }
+
+      $overSpeedingCount    = Violation::whereBetween('created_at', [$startDate, $endDate])->where('type', Violation::VIOLATION_SPEEDING)->count();
+      $wrongLaneCount       = Violation::whereBetween('created_at', [$startDate, $endDate])->where('type', Violation::VIOLATION_WRONG_LANE)->count();
+      $beatingRedLightCount = Violation::whereBetween('created_at', [$startDate, $endDate])->where('type', Violation::VIOLATION_RED_LIGHT)->count();
 
       return [
         'count' => [
